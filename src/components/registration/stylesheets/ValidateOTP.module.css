@@ -1,0 +1,47 @@
+.notice{
+  margin: 10px;
+  padding: 10px;
+  /* text-align: auto; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  max-width: 500px;
+}
+
+.notice label {
+  padding-top: 20px;
+  border-top: 1px solid;
+}
+
+.notice input {
+  width: 80px;
+  height: 30px;
+}
+
+.resend {
+  border: 0;
+  border-bottom: #39ca56 1px solid;
+  background-color: white;
+  color: #3aba54;
+}
+
+.resend:hover {
+  cursor: pointer;
+  transform: scale(1.01);
+}
+
+.verifyEmail {
+  padding: 10px 30px;
+  margin: 5px;
+  background-color: #3aba54;
+  color: white;
+  border-radius: 5px;
+  border: 0;
+  box-shadow: 1px 2px 2px rgba(0,0,0,0.25);
+}
+
+.verifyEmail:hover {
+  background-color: #39ca56;
+  cursor: pointer;
+}

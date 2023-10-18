@@ -1,0 +1,36 @@
+
+.mf-card-container{
+    background-color: #F4E285;
+    width: 160px;
+    height: 110px;
+    border-radius: 5px;
+    display:flex;
+    flex-direction: column;
+    justify-content: space-around;
+    /* cursor: help; */
+}
+
+.mf-card-container:hover{
+    cursor: pointer;
+    box-shadow: 7px 3px 3px grey ;
+    opacity: .7;
+}
+
+.inner-card{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.inner-card:first-of-type label:first-of-type{
+    font-size:x-large;
+    font-weight: bold;
+}
+
+#positive-growth{
+    color:#2BA84A;
+}
+#negative-growth{
+    color:red;
+}
+

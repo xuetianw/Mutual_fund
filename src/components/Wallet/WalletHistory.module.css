@@ -1,0 +1,14 @@
+.list tr {
+  text-align: center;
+}
+
+.list tr:hover {
+  cursor: text;
+  transform: scale(1);
+}
+
+.noHistory {
+  text-align: center;
+  padding: 20px;
+}
+

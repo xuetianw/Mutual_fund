@@ -1,0 +1,46 @@
+.currencyExContainer {
+  padding: 5px;
+  margin: 5px 40px;
+  margin-top: 15px;
+  /* margin-left: 60px; */
+  background-color: rgb(244, 235, 222);
+  border-radius: 10px;
+  min-width: 200px;
+}
+
+.currencyExContainer p {
+  color: black;
+  font-size: large;
+  font-weight: bold;
+}
+
+.CurrencyEx {
+  /* border: 1px solid red; */
+  display: flex;
+  border-radius: 10px;
+  background-color: white;
+  margin-bottom: 10px;
+  padding: 2px 0px;
+}
+
+.CurrencyEx input {
+  max-width: 100px;
+  border: 0;
+  padding-left: 5px;
+  margin: 5px;
+  font-size: large;
+  border-right: 1px solid gray;
+  /* border-right-width: 0.5; */
+}
+
+.CurrencyEx input::-webkit-outer-spin-button,
+.CurrencyEx input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.CurrencyEx select {
+  border: 0;
+  padding: 5px;
+  font-size: large;
+}

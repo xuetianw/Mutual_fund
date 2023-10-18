@@ -1,0 +1,83 @@
+$maxwidth: 1000px;
+$outer-padding: 18px;
+$textfield-height: 65px;
+$textfield-margin-inputs: 18px;
+section#container-registration{
+    max-width: $maxwidth;
+    padding: $outer-padding;
+    background-color: #fbf6e1;
+    margin: auto;
+    margin-top: 20px;
+    border-radius: 10px;
+    form{
+        display: flex;
+        justify-content: center;
+        align-items: center ;
+        flex-direction: column;
+        h2{
+            align-self: center;
+        }
+        
+    }
+
+    section.passsword-req{
+        div.pass-desc{
+            $pass-padding: 8px;
+            width: calc(300px - ($pass-padding * 2));
+            padding: $pass-padding;
+            border-top: solid 1px hsla(4, 1%, 2%, 0.2) ;
+            box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+
+        }
+    }
+
+    #container-name{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    #container-dob-email{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    #container-password{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        margin-bottom: 15px;
+    }
+
+    
+    .container-server-error{
+        // align-self: start;
+        color: red;
+        background-color: lightyellow;
+        box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+        padding: 15px;
+    }
+
+    // MUI TextField
+    .MuiFormControl-root.MuiFormControl-marginNormal.MuiTextField-root{
+        margin-right: $textfield-margin-inputs;
+        // Gives space for error message to appear without pushing everything down
+        height: $textfield-height;
+    }
+
+    .MuiFormControl-root.MuiTextField-root.css-1vwzzdb-MuiFormControl-root-MuiTextField-root{
+        height: $textfield-height;
+        margin-right: $textfield-margin-inputs;
+    }
+
+    // MUI DataTimePicker doesn't have a size:small property so I am matching it here
+    .MuiInputBase-input.MuiOutlinedInput-input.MuiInputBase-inputAdornedEnd.css-nxo287-MuiInputBase-input-MuiOutlinedInput-input{
+        height: 23px;
+        padding-top: 8.5px;
+        padding-bottom: 8.5px;
+    }
+    button#submit-button{
+        margin-right: $textfield-margin-inputs;
+    }
+}

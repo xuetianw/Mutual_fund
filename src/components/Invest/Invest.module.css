@@ -1,0 +1,94 @@
+.fundsContainer {
+  background-color: antiquewhite;
+}
+
+.search {
+  text-align: center;
+  padding: 20px;
+}
+
+.fundBox {
+  /* border: 1px solid red; */
+  background-color: white;
+  max-width: 800px;
+  padding: 10px;
+  margin: 20px auto;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.2s ease-in-out;
+}
+
+.fundBox:hover {
+  box-shadow: 1px 1px 10px 1px rgba(0, 0, 0, 0.25);
+  transform: scale(1.01);
+}
+
+.fundNameContainer {
+  /* border: 1px solid green; */
+  border-bottom: 1.5px solid rgb(233, 233, 233);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.fundNameInfo {
+  /* border: 1px solid yellow; */
+  display: flex;
+  align-items: center;
+}
+
+.fundNameInfo img {
+  max-width: 50px;
+  margin: 10px;
+}
+
+.fundNameInfo p {
+  margin: 0.5rem;
+}
+
+.name {
+  font-size: large;
+}
+
+.description {
+  font-size: small;
+}
+
+.invest {
+  /* border: 1px solid green; */
+  padding: 10px 20px;
+  margin: 10px;
+  border-radius: 6px;
+  color: green;
+  transition:color 1s ease;
+  transition:background 1s ease;
+}
+
+.invest:hover{
+  background-color: blue;
+  color: white;
+  cursor: pointer;
+}
+
+.fundInfoContainer {
+  /* border: 1px solid red; */
+  display: flex;
+  justify-content: space-around;
+}
+
+.fundInfoContainer p {
+  margin: 5px;
+}
+
+.type {
+  color: #6f6d6d;
+}
+
+.positiveReturn {
+  color: green;
+}
+
+.negativeReturn {
+  color: red;
+}

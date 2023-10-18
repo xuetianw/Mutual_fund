@@ -1,0 +1,34 @@
+$maxwidth: 1000px;
+$outer-padding: 18px;
+$textfield-height: 65px;
+section#container-login{
+    max-width: $maxwidth;
+    padding: $outer-padding;
+    background-color: #fbf6e1;
+    margin: auto;
+    margin-top: 20px;
+    border-radius: 10px;
+    form{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    // MUI TextField
+    .MuiFormControl-root.MuiFormControl-marginNormal.MuiTextField-root{
+        // Gives space for error message to appear without pushing everything down
+        height: $textfield-height;
+        // background-color: white;
+    }
+
+    .container-server-error{
+        // align-self: start;
+        color: red;
+        background-color: lightyellow;
+        box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+        padding: 15px;
+    }
+
+
+}

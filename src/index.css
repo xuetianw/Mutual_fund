@@ -1,0 +1,16 @@
+html {
+  font-family: sans-serif;
+}
+
+body {
+  margin: 0;
+  /* background-color: #2BA84A;
+  background-color: #4dd870;
+  background-color: #7de19b; */
+  /* background-color: #fbf9f9; */
+  background-color: rgb(250, 241, 230);
+}
+
+* {
+  box-sizing: border-box;
+}

@@ -1,0 +1,45 @@
+.fundContainer {
+  /* border: 1px solid; */
+  margin: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.lists {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.fund {
+  background-color: #F4E285;
+    width: 10rem;
+    height: 6rem;
+    border-radius: 5px;
+    display:flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.fund:hover{
+  box-shadow: 7px 3px 3px grey ;
+  opacity: .7;
+  cursor: pointer;
+}
+
+.removeBtn {
+    margin: 4px auto;
+    font-size: 1.2rem;
+    background: #eb4040;
+    border: 0;
+    padding: 0.2rem 0.5rem;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+}
+
+.removeBtn:hover {
+  color: #f6acac;
+}

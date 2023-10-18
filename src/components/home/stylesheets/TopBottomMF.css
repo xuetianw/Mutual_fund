@@ -1,0 +1,33 @@
+.container{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    padding: 20px;
+    /* background-color: #72f58a; */
+}
+
+.horizontal-style{
+   display:flex;
+   justify-content: space-around;
+    gap:5px;
+}
+
+.info{
+    text-align: left;
+    font-size: large;
+    font-weight: bold;
+    padding: 10px;
+}
+
+
+@media only screen and (max-width: 1250px){
+    .horizontal-style{
+        flex-wrap: wrap;
+    }
+    h3{
+        text-align: center;
+    }
+}
+
+
+
