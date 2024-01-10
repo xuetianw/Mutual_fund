@@ -1,8 +1,53 @@
+spring:
+  application:
+    name: auth
+  config:
+    import: optional:configserver:http://localhost:8888
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: hclmutualfundtest@gmail.com
+    password: uihocswhcstqalmj
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+  datasource:
+    url: jdbc:mysql://localhost:3306/mu_db
+    username: root
+    password: password
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+
+server:
+  port: 8005
+
+
+remote: http://54.145.166.44
+local: http://localhost
+
+url: ${local}
+
+authPort: 8005
+wallletPort: 8460
+mf_servicePort: 8461
+wishlistPort: 8412
+porfolitPort: 8081
+
+authUrl: ${url}:${authPort}
+wishlist: ${url}:${wishlistPort}
+portfolio: ${url}:${porfolitPort}
+wallet_service: ${url}:${wallletPort}
+mf_service: ${url}:${mf_servicePort}
 
 
 jwt:
   secret: secretkey123
-
-spring:
-  config:
-    import: optional:configserver:http://localhost:8888
+#
+#spring:
+#  config:
+#    import: optional:configserver:http://localhost:8888
