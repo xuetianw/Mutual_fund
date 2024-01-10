@@ -71,6 +71,7 @@ public class HomeController {
 
     @PostMapping("/registerV2")
     public ResponseEntity<?> registerUser2(@RequestBody Customer customer) {
+        log.info("/registerV2");
         return controllerService.registerUser(customer);
     }
 

@@ -7,6 +7,7 @@ import com.mutual_fund.Exception.UserAlreadyExistException;
 import com.mutual_fund.config.EmailSenderService;
 import com.mutual_fund.entities.Customer;
 import com.mutual_fund.entities.Customer_OTP;
+import com.mutual_fund.entities.Wallet;
 import com.mutual_fund.model.*;
 import com.mutual_fund.repository.CustomerRepository;
 import com.mutual_fund.utility.JWTUtility;
@@ -28,6 +29,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.client.RestTemplate;
 
+import java.math.BigDecimal;
 import java.util.Optional;
 import java.util.Random;
 
@@ -47,6 +49,7 @@ public class ControllerService {
     private Customer_OPT_Service customerOptService;
     private EmailSenderService service;
     private UserService userService;
+    private WalletService walletService;
 
     @Autowired
     Random rand;
@@ -57,12 +60,14 @@ public class ControllerService {
 
     @Autowired
     public ControllerService(CustomerRepository customerRepository, AuthenticationManager authenticationManager,
-                             Customer_OPT_Service customerOptService, EmailSenderService service, UserService userService) {
+                             Customer_OPT_Service customerOptService, EmailSenderService service, UserService userService,
+                             WalletService walletService) {
         this.customerRepository = customerRepository;
         this.authenticationManager = authenticationManager;
         this.customerOptService = customerOptService;
         this.service = service;
         this.userService = userService;
+        this.walletService = walletService;
     }
 
 
@@ -150,8 +155,16 @@ public class ControllerService {
             savedCustomer = customerRepository.save(customer);
             log.info("customer " + savedCustomer + "saved");
 
-            RestTemplate restTemplate = new RestTemplate();
-            restTemplate.postForLocation(createWalletUrl, savedCustomer.getId());
+//            RestTemplate restTemplate = new RestTemplate();
+//            log.info("createWalletUrl: " + createWalletUrl);
+//            restTemplate.postForLocation(createWalletUrl, savedCustomer.getId());
+
+            Wallet wallet = new Wallet();
+            wallet.setCustomer(savedCustomer);
+            wallet.setBalance(BigDecimal.ZERO);
+            Wallet savedWallet = walletService.saveWallet(wallet);
+
+            log.info("wallet created: for customer: " + savedWallet);
 
             int OPT_num = rand.nextInt(1000,10000);
             otp = Customer_OTP.builder().customer(savedCustomer).OPT(OPT_num).build();
