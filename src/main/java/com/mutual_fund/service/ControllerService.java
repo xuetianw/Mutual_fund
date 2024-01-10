@@ -54,10 +54,6 @@ public class ControllerService {
     @Autowired
     Random rand;
 
-
-    @Value("${createWalletUrl}")
-    private String createWalletUrl;
-
     @Autowired
     public ControllerService(CustomerRepository customerRepository, AuthenticationManager authenticationManager,
                              Customer_OPT_Service customerOptService, EmailSenderService service, UserService userService,
@@ -154,10 +150,6 @@ public class ControllerService {
             customer.setVerification_status("NOT_VERIFIED");
             savedCustomer = customerRepository.save(customer);
             log.info("customer " + savedCustomer + "saved");
-
-//            RestTemplate restTemplate = new RestTemplate();
-//            log.info("createWalletUrl: " + createWalletUrl);
-//            restTemplate.postForLocation(createWalletUrl, savedCustomer.getId());
 
             Wallet wallet = new Wallet();
             wallet.setCustomer(savedCustomer);
