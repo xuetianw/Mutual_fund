@@ -1,0 +1,13 @@
+spring:
+  application:
+    name: config
+
+  cloud:
+    config:
+      server:
+        git:
+          uri: git@github.com:xuetianw/mfprofile.git
+
+
+server:
+  port: 8888
