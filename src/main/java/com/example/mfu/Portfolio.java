@@ -5,20 +5,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
-import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
-import org.springframework.context.event.EventListener;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @EnableJpaRepositories
 @SpringBootApplication
-public class MfuApplication extends SpringBootServletInitializer {
+public class Portfolio extends SpringBootServletInitializer {
 
 	@Autowired
 	private EmailSenderService service;
 
 	public static void main(String[] args) {
-		SpringApplication.run(MfuApplication.class, args);
+		SpringApplication.run(Portfolio.class, args);
 	}
 
 //	@EventListener(ApplicationReadyEvent.class)
@@ -29,6 +27,6 @@ public class MfuApplication extends SpringBootServletInitializer {
 
 	@Override
 	protected SpringApplicationBuilder configure(SpringApplicationBuilder builder){
-		return builder.sources(MfuApplication.class);
+		return builder.sources(Portfolio.class);
 	}
 }
