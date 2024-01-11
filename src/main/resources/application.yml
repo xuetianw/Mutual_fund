@@ -6,7 +6,7 @@ spring:
     config:
       server:
         git:
-          uri: git@github.com:xuetianw/mfprofile.git
+          uri: https://github.com/xuetianw/profileTest
 
 
 server:
