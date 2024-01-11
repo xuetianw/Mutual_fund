@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.management.InstanceAlreadyExistsException;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
@@ -34,6 +35,7 @@ import com.mfu.wallet.services.WalletService;
 @RestController
 @CrossOrigin("*")
 @RequestMapping("/wallet")
+@Slf4j
 public class WalletRestController {
 
 	@Value("${auth.url2}")
@@ -51,6 +53,7 @@ public class WalletRestController {
 	//Called on user registration
 	@PostMapping("/create")
 	public ResponseEntity<String> createWallet(@RequestBody IdRequest idrequest) throws InstanceAlreadyExistsException {
+		log.info("/create called");
 		Wallet wallet = fundService.createWallet(idrequest.getCustomerId());
 		return new ResponseEntity<>("Wallet created successfully: " + wallet, HttpStatus.CREATED);
 	}
