@@ -9,11 +9,11 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.dailycodebuffer</groupId>
-	<artifactId>JWT-Demo2</artifactId>
+	<artifactId>auth</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 		<packaging>war</packaging>
-	<name>JWT-Demo</name>
-	<description>JWT-Demo2</description>
+	<name>auth</name>
+	<description>authentication service</description>
 
 	<properties>
 		<java.version>17</java.version>
