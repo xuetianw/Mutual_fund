@@ -20,37 +20,39 @@ import java.util.Collections;
 
 import static org.springframework.web.cors.CorsConfiguration.ALL;
 
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+import java.util.Collections;
+
 @Configuration
 @EnableWebSecurity
-@RequiredArgsConstructor
 public class SecurityConfigurationClass {
 
-    @Autowired
-    private final JwtFilter jwtAuthFilter;
-
-
     @Bean
-    SecurityFilterChain defaultSecurityFilterChain(HttpSecurity http) throws Exception {
-
+    public SecurityFilterChain defaultSecurityFilterChain(HttpSecurity http) throws Exception {
         http.cors().configurationSource(new CorsConfigurationSource() {
-            @Override
-            public CorsConfiguration getCorsConfiguration(HttpServletRequest request) {
-                CorsConfiguration configuration = new CorsConfiguration();
-                configuration.setAllowedOrigins(Collections.singletonList(ALL));
-                configuration.setAllowedMethods(Collections.singletonList(ALL));
-                configuration.setAllowedHeaders(Collections.singletonList(ALL));
-
-                return configuration;
-            }
-        }).and().csrf().disable()
+                    @Override
+                    public CorsConfiguration getCorsConfiguration(HttpServletRequest request) {
+                        CorsConfiguration configuration = new CorsConfiguration();
+                        configuration.setAllowedOrigins(Collections.singletonList(CorsConfiguration.ALL));
+                        configuration.setAllowedMethods(Collections.singletonList(CorsConfiguration.ALL));
+                        configuration.setAllowedHeaders(Collections.singletonList(CorsConfiguration.ALL));
+                        return configuration;
+                    }
+                })
+                .and().csrf().disable()
                 .authorizeHttpRequests()
-                .requestMatchers("/register*", "/authenticate*", "/validateToken*", "/validateOTP*", "/isOTPVerified", "/sendOTP").permitAll()
-                .anyRequest().authenticated()
+                .anyRequest().permitAll()
                 .and()
                 .sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-        http.addFilterAfter(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
         return http.build();
     }
-
 }
