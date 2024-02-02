@@ -1,5 +1,7 @@
 package com.mutual_fund.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import jakarta.persistence.Entity;
@@ -51,8 +53,11 @@ public class Customer implements UserDetails {
     @Column(name="verification_status")
     private String verification_status;
 
-//    @OneToOne(mappedBy="customer")
-//    private Customer_OTP customerOtp;
+    @OneToOne(mappedBy="customer", cascade = CascadeType.ALL)
+    private Customer_OTP customerOtp;
+
+    @OneToOne(mappedBy="customer", cascade = CascadeType.ALL)
+    private Wallet wallet;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

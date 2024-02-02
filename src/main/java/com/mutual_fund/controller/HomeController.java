@@ -88,6 +88,13 @@ public class HomeController {
     }
 
 
+    @DeleteMapping("/deleteUser")
+    public ResponseEntity<?> delteUser(@RequestBody int id) {
+        return controllerService.deleteUser(id);
+    }
+
+
+
     @PostMapping("/test2")
     public String test2() {
         return "ss";

@@ -17,7 +17,7 @@ public class Wallet {
 
     private BigDecimal balance;
 
-    @OneToOne(cascade = CascadeType.REMOVE)
+    @OneToOne()
     @JoinColumn(name = "customer_id")
     private Customer customer;
 }

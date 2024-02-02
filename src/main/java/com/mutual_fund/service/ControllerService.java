@@ -4,6 +4,7 @@ package com.mutual_fund.service;
 import com.mutual_fund.CustomerReponse.ErrorResponse;
 import com.mutual_fund.CustomerReponse.SuccessResponse;
 import com.mutual_fund.Exception.UserAlreadyExistException;
+import com.mutual_fund.Exception.UserNotFoundException;
 import com.mutual_fund.config.EmailSenderService;
 import com.mutual_fund.entities.Customer;
 import com.mutual_fund.entities.Customer_OTP;
@@ -249,5 +250,16 @@ public class ControllerService {
 //        catch (MalformedJwtException | SignatureException | ExpiredJwtException e) {
 //            return new ResponseEntity<>(ErrorResponse.builder().message(e.getMessage()).code(HttpStatus.UNAUTHORIZED.value()).build(), HttpStatus.UNAUTHORIZED);
 //        }
+    }
+
+    public ResponseEntity<?> deleteUser(int id) {
+        Optional<Customer> optionalCustomer = customerRepository.findById((long) id);
+        if (optionalCustomer.isEmpty()) {
+            throw new UserNotFoundException("id :" + id + " does not exist");
+        }
+
+        customerRepository.deleteById((long) id);
+
+        return new ResponseEntity<>("delete it", HttpStatus.OK);
     }
 }

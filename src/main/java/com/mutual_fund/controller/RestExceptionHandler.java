@@ -3,6 +3,7 @@ package com.mutual_fund.controller;
 import com.mutual_fund.CustomerReponse.ErrorResponse;
 import com.mutual_fund.CustomerReponse.SuccessResponse;
 import com.mutual_fund.Exception.UserAlreadyExistException;
+import com.mutual_fund.Exception.UserNotFoundException;
 import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.MalformedJwtException;
 import io.jsonwebtoken.SignatureException;
@@ -42,6 +43,15 @@ public class RestExceptionHandler {
         return new ResponseEntity<>(ErrorResponse.builder()
                 .message("INVALID_CREDENTIALS " + e.getMessage())
                 .code(HttpStatus.UNAUTHORIZED.value()).build(), HttpStatus.UNAUTHORIZED);
+    }
+
+
+    @ExceptionHandler
+    public ResponseEntity<?> handleException(UserNotFoundException e) {
+
+        return new ResponseEntity<>(ErrorResponse.builder()
+                .message("INVALID_CREDENTIALS " + e.getMessage())
+                .code(HttpStatus.NOT_FOUND.value()).build(), HttpStatus.NOT_FOUND);
     }
 
     @ExceptionHandler
