@@ -1,0 +1,162 @@
+version: '3.8'
+
+services:
+  mysql-db:
+    image: mysqlimage:latest
+    ports:
+      - "3303:3306"
+    networks:
+      - mutualfund-network
+
+  mutualfund-auth:
+    image: xuetianw/mutualfund-auth:0.0.1-SNAPSHOT
+    container_name: mutualfund-auth-app
+    ports:
+      - "8005:8005"
+    depends_on:
+      - mysql-db
+      - eureka-server
+#      - naming-server
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql-db:3306/mu_db
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: pwd
+      # Add other environment variables your app might need here
+
+      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://eureka-server:8761/eureka
+
+      authUrl: http://mutualfund-auth:8005
+      wishlist: http://mutualfund-wishlist:8412
+      portfolio: http://mutualfund-portfolio:8081
+      wallet_service: http://mutualfund-wallet:8460
+      mf_service: http://mutualfund-mutualfund:8461
+
+    networks:
+      - mutualfund-network
+
+  mutualfund-portfolio:
+    image: xuetianw/mutualfund-portfolio:0.0.1-SNAPSHOT
+    container_name: mutualfund-portfolio
+    ports:
+      - "8081:8081"
+    depends_on:
+      - mysql-db
+      - eureka-server
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql-db:3306/mu_db
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: pwd
+      # Add other environment variables your app might need here
+
+      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://eureka-server:8761/eureka
+
+      authUrl: http://mutualfund-auth:8005
+      wishlist: http://mutualfund-wishlist:8412
+      portfolio: http://mutualfund-portfolio:8081
+      wallet_service: http://mutualfund-wallet:8460
+      mf_service: http://mutualfund-mutualfund:8461
+
+    networks:
+      - mutualfund-network
+
+
+  mutualfund-wishlist:
+    image: xuetianw/mutualfund-wishlist:0.0.1-SNAPSHOT
+    container_name: mutualfund-wishlist
+    ports:
+      - "8412:8412"
+    depends_on:
+      - mysql-db
+      - eureka-server
+      - mutualfund-auth
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql-db:3306/mu_db
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: pwd
+      # Add other environment variables your app might need here
+
+      EUREKA.CLIENT.SERVICEURL.DEFAULTZONE: http://eureka-server:8761/eureka
+
+      AUTH_API_URL: http://mutualfund-auth:8005/validateTokenV2
+      wishlist: http://mutualfund-wishlist:8412
+      portfolio: http://mutualfund-portfolio:8081
+      wallet_service: http://mutualfund-wallet:8460
+      mf_service: http://mutualfund-mutualfund:8461
+
+    networks:
+      - mutualfund-network
+
+  mutualfund-mutualfund:
+    image: xuetianw/mutualfund-mutualfund:0.0.1-SNAPSHOT
+    container_name: mutualfund-mutualfund
+    ports:
+      - "8461:8461"
+    depends_on:
+      - mysql-db
+      - eureka-server
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql-db:3306/mu_db
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: pwd
+      # Add other environment variables your app might need here
+
+      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://eureka-server:8761/eureka
+
+      authUrl: http://mutualfund-auth:8005
+      wishlist: http://mutualfund-wishlist:8412
+      portfolio: http://mutualfund-portfolio:8081
+      wallet_service: http://mutualfund-wallet:8460
+      mf_service: http://mutualfund-mutualfund:8461
+
+    networks:
+      - mutualfund-network
+
+  mutualfund-wallet:
+    image: xuetianw/mutualfund-wallet:0.0.1-SNAPSHOT
+    container_name: mutualfund-wallet
+    ports:
+      - "8460:8460"
+    depends_on:
+      - mysql-db
+      - mutualfund-auth
+      - eureka-server
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql-db:3306/mu_db
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: pwd
+
+      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://eureka-server:8761/eureka
+
+      authUrl: http://mutualfund-auth:8005
+      wishlist: http://mutualfund-wishlist:8412
+      portfolio: http://mutualfund-portfolio:8081
+      wallet_service: http://mutualfund-wallet:8460
+      mf_service: http://mutualfund-mutualfund:8461
+
+      # Add other environment variables your app might need here
+    networks:
+      - mutualfund-network
+
+
+  eureka-server:
+    image: xuetianw/mutualfund-eureka:0.0.1-SNAPSHOT
+    ports:
+      - "8761:8761"
+    networks:
+      - mutualfund-network
+
+  api-gateway:
+    image: xuetianw/mutualfund-apigateway:0.0.1-SNAPSHOT
+    ports:
+      - "8765:8765"
+    networks:
+      - mutualfund-network
+    depends_on:
+      - eureka-server
+    environment:
+      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://eureka-server:8761/eureka
+
+
+networks:
+  mutualfund-network:
+    name: mutualfund-network
