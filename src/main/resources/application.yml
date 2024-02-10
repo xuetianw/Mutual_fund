@@ -45,3 +45,10 @@ wishlist: ${url}:${wishlistPort}
 portfolio: ${url}:${porfolitPort}
 wallet_service: ${url}:${wallletPort}
 mf_service: ${url}:${mf_servicePort}
+
+
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka
